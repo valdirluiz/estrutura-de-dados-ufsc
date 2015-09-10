@@ -1,6 +1,7 @@
 package pilha.ligada;
 
 import pilha.IPilha;
+import utils.Elemento;
 
 /**
  * Created by valdir on 02/09/15.
@@ -12,8 +13,8 @@ public class Pilha<T> implements IPilha<T>{
     @Override
     public T pop() {
         Elemento pop = topo;
-        topo = topo.getProximoElemento();
-        return (T) pop.getValorDoElemento();
+        topo = topo.getProximo();
+        return (T) pop.getValor();
     }
 
     @Override
@@ -23,6 +24,6 @@ public class Pilha<T> implements IPilha<T>{
 
     @Override
     public T top() {
-        return (T) topo.getValorDoElemento();
+        return (T) topo.getValor();
     }
 }

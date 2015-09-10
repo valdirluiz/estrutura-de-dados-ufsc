@@ -34,7 +34,8 @@ public class Lista<T> {
         } else{
             elemento.setAnterior(null);
             elemento.setProximo(primeiroElemento);
-            primeiroElemento = elemento;
+            this.primeiroElemento = elemento;
+            this.cursor = elemento;
         }
         this.contador++;
     }
@@ -43,8 +44,12 @@ public class Lista<T> {
         if(this.listaEstaVazia()){
             throw new ListaVaziaException();
         }
+
+        Elemento<T> proximo = this.cursor.getProximo();
+
         Elemento<T> elemento = new Elemento<>();
-        elemento.setProximo(this.cursor.getProximo());
+        this.cursor.setProximo(elemento);
+        elemento.setProximo(proximo);
         elemento.setAnterior(this.cursor);
         elemento.setValor(objeto);
         this.cursor = elemento;
@@ -55,10 +60,16 @@ public class Lista<T> {
         if(this.listaEstaVazia()){
             throw new ListaVaziaException();
         }
+
         Elemento<T> elemento = new Elemento<>();
-        elemento.setProximo(this.cursor);
         elemento.setAnterior(this.cursor.getAnterior());
+        elemento.setProximo(cursor);
+        cursor.setAnterior(elemento);
         elemento.setValor(objeto);
+
+        if(this.cursor.equals(this.primeiroElemento)){
+            this.primeiroElemento = elemento;
+        }
         this.cursor = elemento;
         this.contador++;
     }
@@ -85,20 +96,24 @@ public class Lista<T> {
 
 
 
-    public boolean contem(T objeto) {return false;}
-
-    public int tamanho() throws ListaVaziaException {
-        if(this.listaEstaVazia()){
-            throw new ListaVaziaException();
+    public boolean contem(T objeto) {
+        Elemento<T> atual = this.primeiroElemento;
+        while (atual!=null){
+            if(atual.getValor().equals(objeto)){
+                return true;
+            }
+            atual = atual.getProximo();
         }
+        return false;
+    }
+
+    public Integer tamanho() throws ListaVaziaException {
         return this.contador;
     }
 
     public boolean listaEstaVazia(){
         return this.primeiroElemento==null;
     }
-
-
 
 
 
