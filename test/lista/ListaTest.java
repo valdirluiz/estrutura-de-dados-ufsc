@@ -63,4 +63,38 @@ public class ListaTest {
         assertThat(lista.tamanho(), is(4));
     }
 
+    @Test
+    public void deveConterElemento(){
+        Lista<Integer> lista = new Lista<>();
+        lista.adicionaNoComeco(1);
+        assertThat(lista.contem(1), is(true));
+    }
+
+    @Test
+    public void naoDeveConterElemento(){
+        Lista<Integer> lista = new Lista<>();
+        lista.adicionaNoComeco(1);
+        assertThat(lista.contem(2), is(false));
+    }
+
+    @Test
+    public void listaDeveEstarVazia(){
+        Lista<Integer> lista = new Lista<>();
+        assertThat(lista.listaEstaVazia(), is(true));
+    }
+
+    @Test
+    public void listaNaoDeveEstarVaziaItemNoComeco(){
+        Lista<Integer> lista = new Lista<>();
+        lista.adicionaNoComeco(1);
+        assertThat(lista.listaEstaVazia(), is(false));
+    }
+
+    @Test
+    public void listaNaoDeveEstarVaziaItemNoFim(){
+        Lista<Integer> lista = new Lista<>();
+        lista.adicionaNoFim(1);
+        assertThat(lista.listaEstaVazia(), is(false));
+    }
+
 }
