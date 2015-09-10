@@ -3,6 +3,7 @@ package pilha;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import pilha.array.Pilha;
 
 /**
  * Created by valdir on 27/08/15.

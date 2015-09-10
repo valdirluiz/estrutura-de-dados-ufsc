@@ -1,5 +1,7 @@
-package pilha;
+package pilha.array;
 
+
+import pilha.IPilha;
 
 public class Pilha<T> implements IPilha<T> {
 
